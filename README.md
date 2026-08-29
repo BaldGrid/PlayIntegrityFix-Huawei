@@ -28,19 +28,6 @@
 | 📋 **详细日志记录** | 所有操作均记录到临时日志，便于排查问题 |
 | 🎨 **友好图形界面** | 彩色中文字符菜单，操作指引清晰，小白也能轻松上手 |
 
----
-
-## 📦 文件结构
-
-Huawei-Google-Certification-Bypass/
-├── 点我打开主界面.bat      # 主程序入口（双击运行）
-├── tools/
-│   ├── adb.exe             # ADB 调试工具
-│   ├── AdbWinApi.dll       # ADB Windows API 依赖
-│   ├── AdbWinUsbApi.dll    # ADB USB 驱动依赖
-│   └── d.exe               # 驱动安装程序（可选，用于选项3）
-└── README.md               # 本文件
-
 
 ---
 
