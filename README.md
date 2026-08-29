@@ -2,19 +2,19 @@
 
 > 华为设备谷歌认证弹窗解决方案 | 免Root | 支持鸿蒙4.2及以下
 
-[![Version](https://img.shields.io/badge/version-2.0-brightgreen.svg)](https://github.com/yourname/Huawei-Google-Certification-Bypass)
-[![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://github.com/yourname/Huawei-Google-Certification-Bypass)
-[![ADB](https://img.shields.io/badge/ADB-Required-orange.svg)](https://developer.android.com/studio/command-line/adb)
+[![Version](https://img.shields.io/badge/version-2.0-brightgreen.svg)]()
+[![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)]()
+[![ADB](https://img.shields.io/badge/ADB-Required-orange.svg)]()
 
 ---
 
 ## 📌 项目简介
 
-本项目是一个 Windows 批处理脚本工具，专为**华为鸿蒙（HarmonyOS）4.2及以下**系统设计，用于解决 Google Play 服务频繁弹出**“此设备未获得Play保护认证”** 的提示问题。
+本项目是一个 Windows 批处理脚本工具，专为**华为鸿蒙（HarmonyOS）4.2及以下**系统设计，用于解决 Google Play 服务频繁弹出 **"此设备未获得Play保护认证"** 的提示问题。
 
-**核心原理**：通过 ADB 命令清除 Google 服务相关应用数据，并禁用 Google 服务框架（GSF），使系统重新尝试认证，从而绕过弹窗干扰。
+**核心原理**：通过 ADB 命令清除 Google 服务相关应用的数据缓存，并禁用 Google 服务框架（GSF），使系统重新发起设备认证请求，从而绕过认证弹窗的持续干扰。
 
-> ⚠️ **注意**：此方案并非永久 Root 破解，而是通过软件层面的重置操作临时解决问题，适合不愿解锁 Bootloader 的用户。
+> ⚠️ **注意**：此方案无需 Root 权限，无需解锁 Bootloader，通过官方 ADB 调试接口即可完成操作，安全无风险。
 
 ---
 
@@ -26,8 +26,91 @@
 | 📱 **ADB 连接检测** | 实时检测手机是否已通过 USB 调试正确连接 |
 | 🚀 **驱动安装辅助** | 集成 ADB/Fastboot 驱动安装入口（需手动确认） |
 | 📋 **详细日志记录** | 所有操作均记录到临时日志，便于排查问题 |
-| 🎨 **友好图形界面** | 彩色中文字符菜单，操作指引清晰 |
+| 🎨 **友好图形界面** | 彩色中文字符菜单，操作指引清晰，小白也能轻松上手 |
 
 ---
 
 ## 📦 文件结构
+
+Huawei-Google-Certification-Bypass/
+├── 点我打开主界面.bat      # 主程序入口（双击运行）
+├── tools/
+│   ├── adb.exe             # ADB 调试工具
+│   ├── AdbWinApi.dll       # ADB Windows API 依赖
+│   ├── AdbWinUsbApi.dll    # ADB USB 驱动依赖
+│   └── d.exe               # 驱动安装程序（可选，用于选项3）
+└── README.md               # 本文件
+
+
+---
+
+## 🚀 快速开始
+
+### 第一步：环境准备
+
+| 项目 | 要求 |
+|------|------|
+| 操作系统 | Windows 7 / 8 / 10 / 11 |
+| 手机设备 | 华为手机（鸿蒙 HarmonyOS 4.2 或更低版本） |
+| 数据线 | 原装 USB 数据线（质量差的线可能导致连接失败） |
+| 手机设置 | 已开启 **开发者选项** 和 **USB 调试** |
+
+### 第二步：开启 USB 调试（详细教程）
+
+1. 打开手机 **设置** → **关于手机** → 连续点击 **版本号** 7次，直至提示"已进入开发者模式"
+2. 返回 **设置** → **系统和更新** → **开发者选项**
+3. 开启 **USB 调试** 开关
+4. 连接电脑后，手机弹出 **"允许 USB 调试吗？"** 对话框，勾选 **"始终允许"** 并点击 **"确定"**
+
+> 💡 **提示**：连接电脑时，手机通知栏请选择 **"传输文件（MTP）"模式**，不要选择"仅充电"。
+
+### 第三步：运行脚本
+
+1. 解压下载的压缩包到任意目录（**建议路径不含中文和空格**）
+2. 右键点击 `点我打开主界面.bat`，选择 **"以管理员身份运行"**（推荐）
+3. 在主菜单中输入 `1`，按回车执行修复
+4. 等待脚本执行完成（约10-20秒），重启手机即可
+
+---
+
+## 📖 操作菜单详解
+
+| 选项 | 功能描述 | 适用场景 |
+|------|----------|----------|
+| `[1]` **解决谷歌弹窗认证** | 核心修复流程，自动执行清除与禁用操作 | 出现认证弹窗时首选此选项 |
+| `[2]` **检测adb端口是否连接** | 显示当前已连接的设备列表及状态 | 手机连接不上时用于排查 |
+| `[3]` **安装adb & fastboot 驱动** | 启动驱动安装程序（需 tools/d.exe 存在） | 电脑无法识别手机时使用 |
+| `[4]` **查看详细日志** | 显示本次运行的完整操作日志 | 修复失败时查看错误详情 |
+| `[5]` **退出脚本** | 安全退出程序 | - |
+
+---
+
+## ⚠️ 注意事项
+
+| 问题现象 | 解决办法 |
+|----------|----------|
+| 脚本提示 **"未找到adb程序"** | 检查 `tools/adb.exe` 是否存在，或是否被杀毒软件误删 |
+| 手机连接后 **无任何反应** | 换原装数据线，确保选择 **传输文件（MTP）模式**，尝试换 USB 口 |
+| 显示设备状态为 **unauthorized** | 在手机上重新授权 USB 调试，或撤销授权后重试 |
+| 显示设备状态为 **offline** | 拔掉数据线重插，重启 ADB 服务或重启手机 |
+| 列出 **多个设备** | 拔出其他安卓设备，退出安卓模拟器后再试 |
+| 弹窗依然出现 | 重启手机，确保网络可访问 Google 服务（需科学上网） |
+| **鸿蒙 5.0 及以上**系统 | 此工具暂不支持，请使用 **出境易** 等替代方案 |
+
+---
+
+## 📝 技术原理（详细说明）
+
+脚本实际执行的 ADB 命令如下：
+
+# 1. 清除 Google Play 服务数据（包含设备认证缓存）
+adb shell pm clear com.google.android.gms
+
+# 2. 清除谷歌服务框架数据（存储设备注册信息）
+adb shell pm clear com.google.android.gsf
+
+# 3. 清除 Google Play 商店数据（应用商店缓存）
+adb shell pm clear com.android.vending
+
+# 4. 禁用谷歌服务框架（阻止其自动触发认证请求）
+adb shell pm disable-user --user 0 com.google.android.gsf
